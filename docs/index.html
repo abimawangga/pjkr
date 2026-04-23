@@ -735,13 +735,148 @@
 
       .manfaat-grid { grid-template-columns: 1fr; }
     }
+  
+    .screen-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.28), transparent 26%),
+        radial-gradient(circle at 80% 20%, rgba(34,211,238,0.18), transparent 22%),
+        linear-gradient(180deg, #06111f 0%, #08172b 45%, #020817 100%);
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    .screen-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .screen-card {
+      width: min(760px, 100%);
+      text-align: center;
+      padding: 42px 28px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      animation: introCardIn 0.8s cubic-bezier(.22,1,.36,1);
+    }
+
+    .screen-icon {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 22px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 38px;
+      background: linear-gradient(135deg, #2563eb, #22d3ee);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .screen-card h1 {
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+
+    .screen-card p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 16px;
+      max-width: 620px;
+      margin: 0 auto 24px;
+    }
+
+    .screen-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .main-site {
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+      filter: blur(10px);
+    }
+
+    .main-site.active {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+
+    .page-transition {
+      animation: pageEnter 0.85s cubic-bezier(.22,1,.36,1);
+    }
+
+    @keyframes introCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(36px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.brand-icon img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
   </style>
 </head>
 <body>
+  <div class="screen-overlay" id="screenOverlay">
+    <div class="screen-card">
+      <div class="brand-icon"> 
+  <img src="Universitas Negeri Malang.png" alt="logo">
+</div> 
+
+      <h1>Pendidikan Jasmani, Kesehatan, dan Rekreasi</h1>
+      <p>
+        Pada bagian selanjutnya disajikan materi teknik dasar gaya dada secara sistematis dan komprehensif untuk mendukung pemahaman yang lebih mendalam.
+      </p>
+      <div class="screen-actions">
+        <button class="btn btn-primary" id="enterSiteBtn" type="button">NEXT</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-site" id="mainSite">
+
   <header>
     <div class="container navbar">
       <a href="#hero" class="brand">
-        <div class="brand-icon">🏊</div>
+        <div class="brand-icon"><img src="Universitas Negeri Malang.png" alt="logo"></div>
         <div>
           <small>Media Pembelajaran</small>
           <h2>Teknik Dasar Gaya Dada</h2>
@@ -1078,12 +1213,29 @@
 
   <footer>
     <div class="container footer-wrap">
-      <div>Media Pembelajaran Teknik Dasar Gaya Dada</div>
-      <div>Versi video stop motion interaktif</div>
     </div>
   </footer>
 
+
+  </div>
+
   <script>
+
+    const screenOverlay = document.getElementById('screenOverlay');
+    const mainSite = document.getElementById('mainSite');
+    const enterSiteBtn = document.getElementById('enterSiteBtn');
+
+    if (enterSiteBtn && screenOverlay && mainSite) {
+      enterSiteBtn.addEventListener('click', () => {
+        screenOverlay.classList.add('hidden');
+        mainSite.classList.add('active', 'page-transition');
+
+        setTimeout(() => {
+          mainSite.classList.remove('page-transition');
+        }, 900);
+      });
+    }
+
     const reveals = document.querySelectorAll('.reveal');
 
     function revealOnScroll() {
@@ -1194,4 +1346,3 @@
   </script>
 </body>
 </html>
-

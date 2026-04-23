@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Pembelajaran Teknik Dasar Gaya Dada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #06111f;
+      --bg2: #0a1930;
+      --card: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.12);
+      --text: #ffffff;
+      --muted: #c9dcff;
+      --muted2: #9db9ee;
+      --blue: #2563eb;
+      --blue2: #3b82f6;
+      --cyan: #67e8f9;
+      --indigo: #818cf8;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max-width: 1200px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.24), transparent 26%),
+        radial-gradient(circle at 80% 20%, rgba(34,211,238,0.16), transparent 22%),
+        linear-gradient(180deg, #06111f 0%, #08172b 45%, #020817 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      z-index: -2;
+      animation: floatBlob 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    body::before {
+      width: 320px;
+      height: 320px;
+      left: -100px;
+      top: 80px;
+      background: rgba(59,130,246,0.18);
+    }
+
+    body::after {
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      top: 120px;
+      background: rgba(34,211,238,0.12);
+      animation-duration: 15s;
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-20px) translateX(12px); }
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(18px);
+      background: rgba(4, 13, 27, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      gap: 16px;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #2563eb, #22d3ee);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.35);
+      font-size: 22px;
+    }
+
+    .brand small {
+      color: var(--muted2);
+      display: block;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .brand h2 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover { color: white; }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(147, 197, 253, 0.16);
+      color: #dbeafe;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 4.6rem);
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #67e8f9, #93c5fd, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 17px;
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.28);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .stop-btn:hover { transform: translateY(-3px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.12);
+      color: white;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.09); }
+
+    .hero-cards {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .mini-card,
+    .glass-card,
+    .section-card,
+    .materi-card,
+    .manfaat-card,
+    .essay-card,
+    .timeline-card,
+    .progress-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .mini-card {
+      padding: 18px;
+      border-radius: 22px;
+    }
+
+    .mini-card h4 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .mini-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .glass-card {
+      padding: 28px;
+      border-radius: 32px;
+    }
+
+    .form-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .essay-card textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(2, 8, 23, 0.55);
+      color: white;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: 0.25s ease;
+    }
+
+    .form-group input:focus,
+    .essay-card textarea:focus {
+      border-color: rgba(96, 165, 250, 0.55);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+    }
+
+    .section { padding: 80px 0; }
+
+    .section-top {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #dbeafe;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .section-top h2 {
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      margin-bottom: 14px;
+    }
+
+    .section-top p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 16px;
+    }
+
+    #materi { padding-top: 20px; }
+
+    .materi-grid {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      padding: 16px 0 40px;
+    }
+
+    .materi-card {
+      border-radius: 30px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      min-height: 280px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(34,211,238,0.12);
+      border: 1px solid rgba(103,232,249,0.18);
+      color: #a5f3fc;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .materi-card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .materi-card p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 15px;
+    }
+
+    .video-box {
+      border-radius: 22px;
+      border: 1px dashed rgba(147, 197, 253, 0.25);
+      background: linear-gradient(135deg, rgba(2,8,23,0.8), rgba(12, 25, 48, 0.85));
+      min-height: 210px;
+      padding: 16px;
+      color: #dbeafe;
+      transition: 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-box::after {
+      content: "STOP MOTION";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #e0f2fe;
+      background: rgba(2, 8, 23, 0.7);
+      border: 1px solid rgba(255,255,255,0.14);
+      z-index: 2;
+    }
+
+    .video-box:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: rgba(103, 232, 249, 0.35);
+    }
+
+    .video-preview {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .video-preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent 24%, transparent 76%, rgba(0,0,0,0.18));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .stop-video {
+      display: block;
+      width: 100%;
+      border-radius: 16px;
+      background: #000;
+      filter: contrast(1.05) saturate(1.02);
+    }
+
+    .stop-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stop-btn {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .stop-btn.active {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      border-color: transparent;
+      box-shadow: 0 10px 22px rgba(37,99,235,0.24);
+    }
+
+    .video-help {
+      font-size: 12px;
+      color: var(--muted2);
+      line-height: 1.7;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .section-card {
+      border-radius: 30px;
+      padding: 26px;
+    }
+
+    .number-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .number {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #bfdbfe;
+    }
+
+    .number-item p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 15px;
+    }
+
+    .manfaat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .manfaat-card {
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .manfaat-card h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .manfaat-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 28px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(103,232,249,0.4), rgba(59,130,246,0.08));
+    }
+
+    .timeline-card {
+      position: relative;
+      margin-left: 52px;
+      margin-bottom: 20px;
+      border-radius: 28px;
+      padding: 22px;
+    }
+
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      left: -43px;
+      top: 26px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #67e8f9;
+      border: 4px solid #06111f;
+      box-shadow: 0 0 0 6px rgba(103,232,249,0.08);
+    }
+
+    .timeline-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-card p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 15px;
+    }
+
+    .timeline-badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.12);
+      color: #bfdbfe;
+      font-size: 12px;
+      border: 1px solid rgba(147,197,253,0.14);
+    }
+
+    .evaluasi-grid {
+      display: grid;
+      grid-template-columns: 0.72fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .progress-card {
+      border-radius: 30px;
+      padding: 26px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .progress-card small {
+      color: #a5f3fc;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .progress-number {
+      font-size: 56px;
+      font-weight: 800;
+      margin: 12px 0 16px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #67e8f9, #60a5fa, #818cf8);
+      transition: width 0.5s ease;
+    }
+
+    .progress-card p {
+      margin-top: 18px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 15px;
+    }
+
+    .essay-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .essay-card {
+      border-radius: 28px;
+      padding: 22px;
+    }
+
+    .essay-card h4 {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .essay-card textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 0 40px;
+      margin-top: 18px;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: 0.8s cubic-bezier(.22,1,.36,1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .split-grid,
+      .evaluasi-grid,
+      .materi-grid,
+      .hero-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .materi-card { grid-template-columns: 1fr; }
+      .progress-card { position: static; }
+      .timeline::before { display: none; }
+      .timeline-card { margin-left: 0; }
+      .timeline-card::before { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav { gap: 14px; }
+      .hero { padding-top: 48px; }
+      .hero h1 { font-size: 2.3rem; }
+
+      .section,
+      .hero {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .glass-card,
+      .section-card,
+      .progress-card,
+      .essay-card,
+      .timeline-card,
+      .materi-card {
+        padding: 18px;
+      }
+
+      .manfaat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="#hero" class="brand">
+        <div class="brand-icon">🏊</div>
+        <div>
+          <small>Media Pembelajaran</small>
+          <h2>Teknik Dasar Gaya Dada</h2>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#materi">Materi</a>
+        <a href="#tujuan">Tujuan</a>
+        <a href="#metodologi">ADDIE</a>
+        <a href="#evaluasi">Evaluasi</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero container" id="hero">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="badge">Website Pembelajaran</div>
+        <h1>
+          Pembelajaran Teknik Dasar Renang
+          <span>Gaya Dada</span>
+        </h1>
+        <p>
+          Website ini dirancang sebagai media pembelajaran digital yang proper, elegan,
+          dan mudah dipahami untuk membantu siswa mempelajari teknik dasar renang gaya dada
+          kapan saja dan di mana saja.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#materi" class="btn btn-primary">Mulai Belajar</a>
+          <a href="#evaluasi" class="btn btn-secondary">Lihat Evaluasi</a>
+        </div>
+
+        <div class="hero-cards">
+          <div class="mini-card">
+            <h4>4 Materi Utama</h4>
+            <p>Gerakan kaki, gerakan tangan, pernapasan, dan koordinasi.</p>
+          </div>
+          <div class="mini-card">
+            <h4>Metodologi ADDIE</h4>
+            <p>Tahapan pengembangan media pembelajaran secara sistematis.</p>
+          </div>
+          <div class="mini-card">
+            <h4>Essay Interaktif</h4>
+            <p>Siswa bisa langsung menulis jawaban di dalam website.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card reveal">
+        <div class="form-title">Data Identitas</div>
+
+        <div class="form-group">
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" value="ABIM MAWANGGA KURNIAWAN">
+        </div>
+
+        <div class="form-group">
+          <label for="nim">NIM</label>
+          <input type="text" id="nim" value="220611609630">
+        </div>
+
+        <div class="form-group">
+          <label for="jurusan">Jurusan</label>
+          <input type="text" id="jurusan" value="PENDIDIKAN JASMANI KESEHATAN DAN REKREASI">
+        </div>
+
+        <div class="form-group">
+          <label for="dosen">Nama Dosen</label>
+          <input type="text" id="dosen" value="Dr. ZIHAN NOVITA SARI, M.Pd">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="materi">
+    <div class="container">
+      <div class="section-top reveal">
+        <div class="section-tag">Materi Inti</div>
+        <h2>Video Pembelajaran Mode Stop Motion</h2>
+        <p>
+          Isi materi tetap sama, namun seluruh video ditampilkan dengan efek stop motion.
+          Efek ini dibuat dengan cara memutar video per potongan frame sehingga gerakan terlihat
+          seperti animasi frame-by-frame dan lebih fokus untuk diamati siswa.
+        </p>
+      </div>
+    </div>
+
+    <div class="materi-grid">
+      <div class="materi-card reveal">
+        <div class="materi-content">
+          <div class="pill">Latihan di tepian kolam</div>
+          <h3>Gerakan Kaki Tahap 1</h3>
+          <p>
+            Belajar teknik gerakan kaki gaya dada atau gaya katak yang dilakukan di tepian kolam
+            untuk memahami pola dasar tendangan.
+          </p>
+        </div>
+        <div class="video-box">
+          <div class="video-preview">
+            <video class="stop-video" data-step="0.15" data-fps="7" playsinline preload="metadata">
+              <source src="kaki1.mp4" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+          </div>
+          <div class="stop-controls">
+            <button class="stop-btn play-toggle active" type="button">▶ Putar Stop Motion</button>
+            <button class="stop-btn reset-video" type="button">↺ Ulang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="materi-card reveal">
+        <div class="materi-content">
+          <div class="pill">Latihan di dalam air</div>
+          <h3>Gerakan Kaki Tahap 2</h3>
+          <p>
+            Latihan gerakan kaki di dalam air dengan berpegangan pada tepian kolam agar koordinasi
+            kaki lebih stabil dan terarah.
+          </p>
+        </div>
+        <div class="video-box">
+          <div class="video-preview">
+            <video class="stop-video" data-step="0.14" data-fps="7" playsinline preload="metadata">
+              <source src="abim2.mp4" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+          </div>
+          <div class="stop-controls">
+            <button class="stop-btn play-toggle active" type="button">▶ Putar Stop Motion</button>
+            <button class="stop-btn reset-video" type="button">↺ Ulang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="materi-card reveal">
+        <div class="materi-content">
+          <div class="pill">Tarik - sapu - rapatkan</div>
+          <h3>Gerakan Tangan</h3>
+          <p>
+            Pelajari urutan gerakan tangan mulai dari posisi lurus, sapuan ke samping, tarikan ke dalam,
+            lalu kembali ke posisi awal.
+          </p>
+        </div>
+        <div class="video-box">
+          <div class="video-preview">
+            <video class="stop-video" data-step="0.15" data-fps="7" playsinline preload="metadata">
+              <source src="gerakan-tangan-abim.mp4" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+          </div>
+          <div class="stop-controls">
+            <button class="stop-btn play-toggle active" type="button">▶ Putar Stop Motion</button>
+            <button class="stop-btn reset-video" type="button">↺ Ulang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="materi-card reveal">
+        <div class="materi-content">
+          <div class="pill">Sinkronisasi gerakan</div>
+          <h3>Pernapasan &amp; Koordinasi</h3>
+          <p>
+            Latihan koordinasi antara gerakan tangan, gerakan kaki, dan pernapasan agar renang gaya dada
+            dilakukan dengan ritme yang benar.
+          </p>
+        </div>
+        <div class="video-box">
+          <div class="video-preview">
+            <video class="stop-video" data-step="0.16" data-fps="6" playsinline preload="metadata">
+              <source src="abim3.mp4" type="video/mp4">
+              Browser tidak mendukung video.
+            </video>
+          </div>
+          <div class="stop-controls">
+            <button class="stop-btn play-toggle active" type="button">▶ Putar Stop Motion</button>
+            <button class="stop-btn reset-video" type="button">↺ Ulang</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="tujuan">
+    <div class="split-grid">
+      <div class="section-card reveal">
+        <div class="section-tag">Tujuan Penelitian</div>
+        <h2 style="margin-bottom: 14px;">Fokus Pengembangan Media</h2>
+        <div class="number-item">
+          <div class="number">1</div>
+          <p>Mengembangkan media pembelajaran digital untuk pembelajaran renang gaya dada di sekolah.</p>
+        </div>
+        <div class="number-item">
+          <div class="number">2</div>
+          <p>Mengetahui kendala yang dihadapi siswa dalam memahami materi renang gaya dada.</p>
+        </div>
+        <div class="number-item">
+          <div class="number">3</div>
+          <p>Mendeskripsikan respon siswa terhadap penggunaan media pembelajaran digital.</p>
+        </div>
+      </div>
+
+      <div class="section-card reveal">
+        <div class="section-tag">Manfaat Penelitian</div>
+        <h2 style="margin-bottom: 14px;">Nilai Guna bagi Pembelajaran</h2>
+        <div class="manfaat-grid">
+          <div class="manfaat-card">
+            <h4>Teoritis</h4>
+            <p>Memberikan sumbangan pengembangan media pembelajaran berbasis digital dalam mata pelajaran PJOK.</p>
+          </div>
+          <div class="manfaat-card">
+            <h4>Untuk Guru</h4>
+            <p>Menjadi media tambahan untuk menjelaskan teknik dasar renang gaya dada dengan lebih menarik.</p>
+          </div>
+          <div class="manfaat-card">
+            <h4>Untuk Siswa</h4>
+            <p>Membantu siswa memahami materi melalui visual, video, dan animasi yang lebih mudah dipahami.</p>
+          </div>
+          <div class="manfaat-card">
+            <h4>Untuk Sekolah</h4>
+            <p>Mendukung penerapan pembelajaran berbasis digital sesuai perkembangan teknologi pendidikan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="metodologi">
+    <div class="section-top reveal">
+      <div class="section-tag">Metodologi</div>
+      <h2>Model Pengembangan ADDIE</h2>
+      <p>
+        Penelitian menggunakan pendekatan Research and Development dengan model ADDIE
+        yang terdiri dari Analyze, Design, Development, Implementation, dan Evaluation.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-card reveal">
+        <div class="timeline-badge">Tahap 1</div>
+        <h3>Analyze</h3>
+        <p>Observasi dan wawancara untuk mengidentifikasi kebutuhan serta permasalahan pembelajaran renang di sekolah.</p>
+      </div>
+
+      <div class="timeline-card reveal">
+        <div class="timeline-badge">Tahap 2</div>
+        <h3>Design</h3>
+        <p>Merancang struktur media, konten pembelajaran, gambar, audio, dan video sesuai hasil analisis kebutuhan.</p>
+      </div>
+
+      <div class="timeline-card reveal">
+        <div class="timeline-badge">Tahap 3</div>
+        <h3>Development</h3>
+        <p>Mengembangkan media pembelajaran interaktif sebagai produk bahan ajar digital yang siap diuji.</p>
+      </div>
+
+      <div class="timeline-card reveal">
+        <div class="timeline-badge">Tahap 4</div>
+        <h3>Implementation</h3>
+        <p>Menguji penggunaan media kepada siswa untuk melihat respon, kemudahan, dan efektivitas penggunaan.</p>
+      </div>
+
+      <div class="timeline-card reveal">
+        <div class="timeline-badge">Tahap 5</div>
+        <h3>Evaluation</h3>
+        <p>Melakukan validasi dan revisi berdasarkan masukan ahli materi, ahli media, dan ahli pembelajaran.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="evaluasi">
+    <div class="section-top reveal">
+      <div class="section-tag">Evaluasi</div>
+      <h2>Soal Essay Interaktif</h2>
+      <p>
+        Bagian evaluasi digunakan untuk melihat sejauh mana pemahaman siswa terhadap materi
+        teknik dasar gaya dada yang telah dipelajari melalui website ini.
+      </p>
+    </div>
+
+    <div class="evaluasi-grid">
+      <div class="progress-card reveal">
+        <small>Progress Jawaban</small>
+        <div class="progress-number" id="progressNumber">0%</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p>
+          Isi jawaban essay pada kolom yang tersedia. Progress akan bergerak otomatis
+          saat siswa mulai mengisi jawaban.
+        </p>
+      </div>
+
+      <div class="essay-list">
+        <div class="essay-card reveal">
+          <h4>1. Jelaskan tahapan gerakan kaki pada renang gaya dada secara urut.</h4>
+          <textarea class="essay-input" placeholder="Tulis jawaban di sini..."></textarea>
+        </div>
+
+        <div class="essay-card reveal">
+          <h4>2. Jelaskan urutan gerakan tangan pada gaya dada dan fungsinya.</h4>
+          <textarea class="essay-input" placeholder="Tulis jawaban di sini..."></textarea>
+        </div>
+
+        <div class="essay-card reveal">
+          <h4>3. Bagaimana cara mengkoordinasikan gerakan tangan, kaki, dan pernapasan pada gaya dada?</h4>
+          <textarea class="essay-input" placeholder="Tulis jawaban di sini..."></textarea>
+        </div>
+
+        <div class="essay-card reveal">
+          <h4>4. Jelaskan peran media website dalam membantu pembelajaran renang gaya dada.</h4>
+          <textarea class="essay-input" placeholder="Tulis jawaban di sini..."></textarea>
+        </div>
+
+        <div class="essay-card reveal">
+          <h4>5. Sebutkan perbedaan teknik yang benar dan salah pada gaya dada dari segi posisi tubuh dan pernapasan.</h4>
+          <textarea class="essay-input" placeholder="Tulis jawaban di sini..."></textarea>
+        </div>
+
+        <div class="essay-card reveal">
+          <h4>6. Sebutkan nama lain dari gaya dada.</h4>
+          <textarea class="essay-input" placeholder="Tulis jawaban di sini..."></textarea>
+        </div>
+
+        <div class="essay-card reveal">
+          <h4>7. Apa tujuan media pembelajaran ini dibuat?</h4>
+          <textarea class="essay-input" placeholder="Tulis jawaban di sini..."></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>Media Pembelajaran Teknik Dasar Gaya Dada</div>
+      <div>Versi video stop motion interaktif</div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+      reveals.forEach((el) => {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    const essayInputs = document.querySelectorAll('.essay-input');
+    const progressFill = document.getElementById('progressFill');
+    const progressNumber = document.getElementById('progressNumber');
+
+    function updateProgress() {
+      let filled = 0;
+      essayInputs.forEach(input => {
+        if (input.value.trim() !== '') filled++;
+      });
+      const percent = Math.round((filled / essayInputs.length) * 100);
+      progressFill.style.width = percent + '%';
+      progressNumber.textContent = percent + '%';
+    }
+
+    essayInputs.forEach(input => {
+      input.addEventListener('input', updateProgress);
+    });
+
+    updateProgress();
+
+    const stopMotionVideos = document.querySelectorAll('.stop-video');
+
+    function setupStopMotion(video) {
+      const card = video.closest('.video-box');
+      const playBtn = card.querySelector('.play-toggle');
+      const resetBtn = card.querySelector('.reset-video');
+      const frameStep = parseFloat(video.dataset.step || '0.15');
+      const fps = parseFloat(video.dataset.fps || '7');
+      const frameDelay = 1000 / fps;
+      let timer = null;
+      let isPlaying = false;
+
+      video.controls = false;
+      video.muted = true;
+      video.pause();
+
+      function syncButton() {
+        playBtn.textContent = isPlaying ? '⏸ Jeda' : '▶ Putar Stop Motion';
+        playBtn.classList.toggle('active', isPlaying);
+      }
+
+      function stopMotionPlay() {
+        if (isPlaying) return;
+        isPlaying = true;
+        syncButton();
+
+        timer = setInterval(() => {
+          if (video.readyState < 2) return;
+
+          if (video.currentTime + frameStep >= (video.duration || 0)) {
+            video.currentTime = 0;
+          } else {
+            video.currentTime += frameStep;
+          }
+        }, frameDelay);
+      }
+
+      function stopMotionPause() {
+        isPlaying = false;
+        syncButton();
+        clearInterval(timer);
+        timer = null;
+      }
+
+      playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          stopMotionPause();
+        } else {
+          stopMotionPlay();
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
+        stopMotionPause();
+        video.currentTime = 0;
+      });
+
+      video.addEventListener('ended', () => {
+        stopMotionPause();
+        video.currentTime = 0;
+      });
+
+      video.addEventListener('loadedmetadata', () => {
+        video.currentTime = 0;
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopMotionPause();
+      });
+    }
+
+    stopMotionVideos.forEach(setupStopMotion);
+  </script>
+</body>
+</html>
